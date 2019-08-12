@@ -19,7 +19,12 @@ namespace BlogApp.Controllers
             _repository = repository;
         }
 
-        public IActionResult Index() => View();
+        public IActionResult Index()
+        {
+            var posts = _repository.GetAllPosts();
+
+            return View(posts);
+        }
         public IActionResult Post() => View();
 
         [HttpGet]
