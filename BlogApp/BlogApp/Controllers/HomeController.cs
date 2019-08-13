@@ -25,20 +25,9 @@ namespace BlogApp.Controllers
 
             return View(posts);
         }
-        public IActionResult Post() => View();
-
-        [HttpGet]
-        public IActionResult Edit() => View(new Post());
-
-        [HttpPost]
-        public async Task<IActionResult> Edit(Post post)
+        public IActionResult Post(int id)
         {
-            _repository.AddPost(post);
-
-            if (await _repository.SaveChangesAsync())
-            {
-                return RedirectToAction("Index");
-            }
+            var post = _repository.GetPost(id);
 
             return View(post);
         }
